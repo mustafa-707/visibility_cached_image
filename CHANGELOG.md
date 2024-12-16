@@ -1,8 +1,12 @@
 # CHANGES
 
+## 0.0.3
+
+- make depandancies more dynamic
+
 ## 0.0.2
 
-- release the package.
+- correct README.md
 
 ## 0.0.1
 
