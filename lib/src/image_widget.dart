@@ -21,7 +21,6 @@ class VisibilityCachedImage extends HookWidget {
   final BoxFit? fit;
   final int? cacheHeight;
   final int? cacheWidth;
-  final bool preload;
 
   const VisibilityCachedImage({
     super.key,
@@ -35,7 +34,6 @@ class VisibilityCachedImage extends HookWidget {
     this.fit,
     this.cacheHeight,
     this.cacheWidth,
-    this.preload = false,
   }) : assert(
           imageUrl != '' || assetPath != null,
           'Either imageUrl or assetPath must be provided.',

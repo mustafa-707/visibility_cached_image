@@ -15,7 +15,7 @@ class ImageRequestQueue {
 
   final _queue = Queue<_QueueItem>();
   bool _processing = false;
-  static const _maxConcurrent = 12;
+  static const _maxConcurrent = 32;
   int _currentRequests = 0;
 
   Future<T> enqueue<T>(Future<T> Function() task) {

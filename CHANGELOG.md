@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.0.4
+
+- remove unused code
+
 ## 0.0.3
 
 - make depandancies more dynamic
