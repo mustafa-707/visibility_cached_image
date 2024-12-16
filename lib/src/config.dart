@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
-import 'package:visibility_cached_image/src/lrm.dart';
+import 'package:visibility_cached_image/src/lru.dart';
 import 'package:visibility_cached_image/src/queue_manager.dart';
 
 class VisibilityCacheImageConfig {

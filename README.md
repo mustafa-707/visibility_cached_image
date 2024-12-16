@@ -2,14 +2,14 @@
 
 [![StandWithPalestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/badges/StandWithPalestine.svg)](https://github.com/TheBSD/StandWithPalestine/blob/main/docs/README.md) [![Pub Package](https://img.shields.io/pub/v/visibility_cached_image.svg)](https://pub.dev/packages/visibility_cached_image)
 
-visibility_cached_image is a powerful and efficient Flutter package that handles both network and asset image loading with advanced memory management techniques. This package optimizes the loading process, reduces memory usage, and ensures smooth user experience by using techniques like lazy loading, a queue system for prioritizing image requests, and caching with Hive.
+`visibility_cached_image` is a powerful and efficient Flutter package that handles both network and asset image loading with advanced memory management techniques. This package optimizes the loading process, reduces memory usage, and ensures smooth user experience by using techniques like lazy loading, a queue system for prioritizing image requests, and caching with Hive.
 
 With this package, you can load images from assets or the network, display them in a Widget, and benefit from smarter memory and performance management. Perfect for use in apps with long lists or dynamic image loading that needs optimization.
 
 ## Features  
 
 - Network and Asset Image Loading: Handles both network and asset images seamlessly.
-- Efficient Memory Management: Uses strategies like Lazy Image Rendering (`LRM`) and smart caching to reduce memory usage and improve app performance.
+- Efficient Memory Management: Uses strategies like Lazy Image Rendering (`LRU` ~ Least Recently Used) and smart caching to reduce memory usage and improve app performance.
 - Image Queue System: Loads images in a prioritized order to prevent unnecessary loading delays, optimizing the user experience.
 - Hive Integration: Caches images locally with Hive to reduce redundant network requests and increase app responsiveness.
 - Customizable Loading and Error Handling: Fully customizable loading and error states with loadingBuilder and errorBuilder options.
