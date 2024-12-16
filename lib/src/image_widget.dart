@@ -21,6 +21,7 @@ class VisibilityCachedImage extends HookWidget {
   final BoxFit? fit;
   final int? cacheHeight;
   final int? cacheWidth;
+  final bool disableVisibility;
 
   const VisibilityCachedImage({
     super.key,
@@ -34,6 +35,7 @@ class VisibilityCachedImage extends HookWidget {
     this.fit,
     this.cacheHeight,
     this.cacheWidth,
+    this.disableVisibility = false,
   }) : assert(
           imageUrl != '' || assetPath != null,
           'Either imageUrl or assetPath must be provided.',
@@ -57,7 +59,7 @@ class VisibilityCachedImage extends HookWidget {
     }, []);
 
     void onVisibilityChanged(VisibilityInfo info) {
-      if (!isMounted.value) return;
+      if (!isMounted.value || disableVisibility) return;
 
       final visible = info.visibleFraction > 0;
       if (visible != isVisible.value) {
@@ -85,7 +87,7 @@ class VisibilityCachedImage extends HookWidget {
 
     return VisibilityDetector(
       key: ValueKey(imageUrl.isNotEmpty ? imageUrl : assetPath),
-      onVisibilityChanged: onVisibilityChanged,
+      onVisibilityChanged: disableVisibility ? null : onVisibilityChanged,
       child: _buildImage(
         context,
         image.value,

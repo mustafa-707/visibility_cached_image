@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.0.8
+
+- Add `disableVisibility` to disable visibility
+
 ## 0.0.7
 
 - Add no Queue Type
