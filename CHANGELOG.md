@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.0.7
+
+- Add no Queue Type
+
 ## 0.0.6
 
 - Add new functionality to handle concurrent type `LoadingType`

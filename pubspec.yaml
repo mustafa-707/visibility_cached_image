@@ -2,7 +2,7 @@ name: visibility_cached_image
 description: |
   A Flutter package that efficiently handles loading both network and asset images with advanced memory management techniques.
 
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/mustafa-707/visibility_cached_image
 repository: https://github.com/mustafa-707/visibility_cached_image
 issue_tracker: https://github.com/mustafa-707/visibility_cached_image/issues
