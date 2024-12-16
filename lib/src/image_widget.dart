@@ -85,6 +85,19 @@ class VisibilityCachedImage extends HookWidget {
       }
     }
 
+    if (disableVisibility) {
+      loadTask.value?.cancel();
+      loadTask.value = CancelableOperation.fromFuture(
+        _loadImageIfNeeded(
+          image: image,
+          error: error,
+          progress: progress,
+          isVisible: isVisible,
+          isMounted: isMounted,
+        ),
+      );
+    }
+
     return VisibilityDetector(
       key: ValueKey(imageUrl.isNotEmpty ? imageUrl : assetPath),
       onVisibilityChanged: disableVisibility ? null : onVisibilityChanged,
@@ -160,7 +173,7 @@ class VisibilityCachedImage extends HookWidget {
     required ValueNotifier<bool> isVisible,
     required ObjectRef<bool> isMounted,
   }) async {
-    if (!isMounted.value || !isVisible.value) return;
+    if (!isMounted.value || (!isVisible.value && !disableVisibility)) return;
 
     try {
       if (assetPath != null) {

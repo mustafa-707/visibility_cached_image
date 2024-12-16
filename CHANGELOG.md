@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.0.9
+
+- fix `disableVisibility` is not loading images
+
 ## 0.0.8
 
 - Add `disableVisibility` to disable visibility
