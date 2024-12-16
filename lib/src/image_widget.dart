@@ -58,6 +58,19 @@ class VisibilityCachedImage extends HookWidget {
       };
     }, []);
 
+    if (disableVisibility && image.value == null && error.value == null) {
+      loadTask.value?.cancel();
+      loadTask.value = CancelableOperation.fromFuture(
+        _loadImageIfNeeded(
+          image: image,
+          error: error,
+          progress: progress,
+          isVisible: isVisible,
+          isMounted: isMounted,
+        ),
+      );
+    }
+
     void onVisibilityChanged(VisibilityInfo info) {
       if (!isMounted.value || disableVisibility) return;
 
@@ -83,19 +96,6 @@ class VisibilityCachedImage extends HookWidget {
           loadTask.value = null;
         }
       }
-    }
-
-    if (disableVisibility) {
-      loadTask.value?.cancel();
-      loadTask.value = CancelableOperation.fromFuture(
-        _loadImageIfNeeded(
-          image: image,
-          error: error,
-          progress: progress,
-          isVisible: isVisible,
-          isMounted: isMounted,
-        ),
-      );
     }
 
     return VisibilityDetector(
@@ -173,7 +173,7 @@ class VisibilityCachedImage extends HookWidget {
     required ValueNotifier<bool> isVisible,
     required ObjectRef<bool> isMounted,
   }) async {
-    if (!isMounted.value || (!isVisible.value && !disableVisibility)) return;
+    if (!isMounted.value || !isVisible.value) return;
 
     try {
       if (assetPath != null) {
