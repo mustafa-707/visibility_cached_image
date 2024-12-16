@@ -14,21 +14,30 @@ class VisibilityCacheImageConfig {
   static LRUMap<String, ImageCacheEntry> _memoryCache = LRUMap(128);
   static const _maxMemoryCacheSize = 64 * 1024 * 1024;
   static int _currentMemorySize = 0;
-  static final requestQueue = ImageRequestQueue();
+  static late ImageRequestQueue requestQueue;
   static late Dio dio;
+
   static Future<void> init({
     String? subDir,
     Duration? clearCacheAfter,
     int? maxMemoryCacheEntries,
     Dio? dioInstance,
+    int? maxConcurrentRequests,
   }) async {
     if (_isInitialized) return;
     dio = dioInstance ?? Dio();
     clearCacheAfter ??= const Duration(days: 30);
-    _memoryCache = LRUMap(
-      maxMemoryCacheEntries ?? 500,
-      maxAge: const Duration(hours: 1),
-    );
+    requestQueue = ImageRequestQueue();
+
+    if (maxConcurrentRequests != null) {
+      requestQueue.maxConcurrent = maxConcurrentRequests;
+    }
+
+    _memoryCache = maxMemoryCacheEntries == null
+        ? _memoryCache
+        : LRUMap(
+            maxMemoryCacheEntries,
+          );
 
     await Hive.initFlutter(subDir);
     _imageKeyBox = await Hive.openLazyBox('cachedImagesKeys');
@@ -43,7 +52,6 @@ class VisibilityCacheImageConfig {
     _checkInit();
     final key = _keyFromUrl(url);
 
-    // Check memory cache
     final entry = _memoryCache[key];
     if (entry != null) {
       entry.updateAccess();
@@ -51,7 +59,6 @@ class VisibilityCacheImageConfig {
       return entry.data;
     }
 
-    // Check disk cache
     final image = await _getFromDisk(url);
     if (image != null) {
       _addToMemoryCache(url, image, isVisible: isVisible);

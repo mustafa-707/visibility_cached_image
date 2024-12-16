@@ -11,12 +11,21 @@ class _QueueItem {
 class ImageRequestQueue {
   static final ImageRequestQueue _instance = ImageRequestQueue._internal();
   factory ImageRequestQueue() => _instance;
-  ImageRequestQueue._internal();
+  ImageRequestQueue._internal({int maxConcurrent = 32}) {
+    _maxConcurrent = maxConcurrent;
+  }
 
   final _queue = Queue<_QueueItem>();
   bool _processing = false;
-  static const _maxConcurrent = 32;
+  late int _maxConcurrent;
   int _currentRequests = 0;
+
+  set maxConcurrent(int value) {
+    if (value > 0) {
+      _maxConcurrent = value;
+      _processQueue();
+    }
+  }
 
   Future<T> enqueue<T>(Future<T> Function() task) {
     final completer = Completer<T>();

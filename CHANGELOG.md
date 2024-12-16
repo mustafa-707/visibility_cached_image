@@ -1,17 +1,21 @@
 # CHANGES
 
+## 0.0.5
+
+- Enhance queue to be able to handle concurrent max size
+
 ## 0.0.4
 
-- remove unused code
+- Remove unused code
 
 ## 0.0.3
 
-- make depandancies more dynamic
+- Make depandancies more dynamic
 
 ## 0.0.2
 
-- correct README.md
+- Correct README.md
 
 ## 0.0.1
 
-- release the package.
+- Release the package.
