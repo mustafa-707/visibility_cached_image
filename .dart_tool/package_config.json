@@ -3,9 +3,9 @@
   "packages": [
     {
       "name": "async",
-      "rootUri": "file:///Users/is10vmust/.pub-cache/hosted/pub.dev/async-2.11.0",
+      "rootUri": "file:///Users/is10vmust/.pub-cache/hosted/pub.dev/async-2.12.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.4"
     },
     {
       "name": "characters",
@@ -230,7 +230,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-12-16T15:03:31.200560Z",
+  "generated": "2024-12-16T15:08:14.743089Z",
   "generator": "pub",
   "generatorVersion": "3.6.0",
   "flutterRoot": "file:///Users/is10vmust/fvm/versions/3.27.0",
