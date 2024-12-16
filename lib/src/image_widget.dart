@@ -23,6 +23,7 @@ class VisibilityCachedImage extends HookWidget {
   final int? cacheWidth;
   final bool disableVisibility;
   final String? heroTag;
+  final bool useOldImageOnUrlChange;
 
   const VisibilityCachedImage({
     super.key,
@@ -37,6 +38,7 @@ class VisibilityCachedImage extends HookWidget {
     this.cacheHeight,
     this.cacheWidth,
     this.disableVisibility = false,
+    this.useOldImageOnUrlChange = false,
     this.heroTag,
   }) : assert(
           imageUrl != '' || assetPath != null,
@@ -135,7 +137,7 @@ class VisibilityCachedImage extends HookWidget {
         width: width,
         height: height,
         fit: fit,
-        gaplessPlayback: true,
+        gaplessPlayback: useOldImageOnUrlChange,
         cacheHeight: cacheHeight,
         cacheWidth: cacheWidth,
         errorBuilder: errorBuilder,

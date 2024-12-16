@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.1.2
+
+- Add `useOldImageOnUrlChange` flag
+
 ## 0.1.1
 
 - Add Hero Tag Feature
