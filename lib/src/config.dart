@@ -23,6 +23,7 @@ class VisibilityCacheImageConfig {
     int? maxMemoryCacheEntries,
     Dio? dioInstance,
     int? maxConcurrentRequests,
+    LoadingType? loadingType,
   }) async {
     if (_isInitialized) return;
     dio = dioInstance ?? Dio();
@@ -31,6 +32,10 @@ class VisibilityCacheImageConfig {
 
     if (maxConcurrentRequests != null) {
       requestQueue.maxConcurrent = maxConcurrentRequests;
+    }
+
+    if (loadingType != null) {
+      requestQueue.loadingType = loadingType;
     }
 
     _memoryCache = maxMemoryCacheEntries == null

@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.0.6
+
+- Add new functionality to handle concurrent type `LoadingType`
+
 ## 0.0.5
 
 - Enhance queue to be able to handle concurrent max size
