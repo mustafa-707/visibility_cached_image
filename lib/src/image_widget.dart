@@ -46,7 +46,7 @@ class VisibilityCachedImage extends HookWidget {
     final image = useState<Uint8List?>(null);
     final error = useState<String?>(null);
     final progress = useState(0.0);
-    final isVisible = useState(false);
+    final isVisible = useState(disableVisibility);
     final loadTask = useState<CancelableOperation<void>?>(null);
     final isMounted = useRef(true);
 
@@ -98,16 +98,23 @@ class VisibilityCachedImage extends HookWidget {
       }
     }
 
-    return VisibilityDetector(
-      key: ValueKey(imageUrl.isNotEmpty ? imageUrl : assetPath),
-      onVisibilityChanged: disableVisibility ? null : onVisibilityChanged,
-      child: _buildImage(
-        context,
-        image.value,
-        error.value,
-        progress.value,
-      ),
-    );
+    return disableVisibility
+        ? _buildImage(
+            context,
+            image.value,
+            error.value,
+            progress.value,
+          )
+        : VisibilityDetector(
+            key: ValueKey(imageUrl.isNotEmpty ? imageUrl : assetPath),
+            onVisibilityChanged: onVisibilityChanged,
+            child: _buildImage(
+              context,
+              image.value,
+              error.value,
+              progress.value,
+            ),
+          );
   }
 
   Widget _buildImage(
