@@ -1,0 +1,26 @@
+name: visibility_cached_image
+description: |
+  A Flutter package that efficiently handles loading both network and asset images with advanced memory management techniques.
+  It uses caching, lazy image rendering, and a queue system for prioritizing image loading requests. Optimized with Hive and Dio.
+version: 0.0.1
+homepage: https://github.com/mustafa-707/visibility_cached_image
+repository: https://github.com/mustafa-707/visibility_cached_image
+issue_tracker: https://github.com/mustafa-707/visibility_cached_image/issues
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  visibility_detector:
+  hive_ce_flutter:
+  uuid:
+  dio:
+  flutter_hooks:
+  async:
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+flutter:
