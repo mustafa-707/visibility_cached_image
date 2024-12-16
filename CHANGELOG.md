@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.1.1
+
+- Add Hero Tag Feature
+
 ## 0.1.0
 
 - fix `disableVisibility` is not loading images

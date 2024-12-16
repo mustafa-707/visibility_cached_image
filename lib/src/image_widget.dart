@@ -22,6 +22,7 @@ class VisibilityCachedImage extends HookWidget {
   final int? cacheHeight;
   final int? cacheWidth;
   final bool disableVisibility;
+  final String? heroTag;
 
   const VisibilityCachedImage({
     super.key,
@@ -36,6 +37,7 @@ class VisibilityCachedImage extends HookWidget {
     this.cacheHeight,
     this.cacheWidth,
     this.disableVisibility = false,
+    this.heroTag,
   }) : assert(
           imageUrl != '' || assetPath != null,
           'Either imageUrl or assetPath must be provided.',
@@ -149,8 +151,7 @@ class VisibilityCachedImage extends HookWidget {
             ),
           );
     }
-
-    return RepaintBoundary(
+    final imageWidget = RepaintBoundary(
       child: Image.memory(
         image,
         width: width,
@@ -171,6 +172,14 @@ class VisibilityCachedImage extends HookWidget {
             : errorBuilder,
       ),
     );
+    if (heroTag != null) {
+      return Hero(
+        tag: heroTag!,
+        transitionOnUserGestures: true,
+        child: imageWidget,
+      );
+    }
+    return imageWidget;
   }
 
   Future<void> _loadImageIfNeeded({
